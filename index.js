@@ -4,6 +4,14 @@ const Discord = require("discord.js")
 
 const client = new Discord.Client();
 
+var http = require('http');
+
+//create a server object:
+http.createServer(function (req, res) {
+    res.write('Hello World!'); //write a response to the client
+    res.end(); //end the response
+}).listen(8080); //the server object listens on port 8080
+
 client.login(process.env.token);
 
 client.on('ready', () => {
