@@ -1,0 +1,44 @@
+div.side-panel
+{
+    position: absolute;
+    background-color: rgb(141, 164, 192);
+    border-radius: 0px 30px 30px 0px;
+    width: 400px;
+    height: 100%;
+    margin: 0;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+div.guild-panel
+{
+    display: flex;
+    border-radius: 30px;
+    width: 300px;
+    height: 60px;
+    margin: 50px 50px;
+    /*background-color: rgb(41, 43, 47);*/
+    color: white;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(255, 255, 255, 0.3);
+}
+
+div.guild-panel img.guild-icon
+{
+    border: none;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+}
+
+div.guild-panel div.guild-info
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px 18px;
+}
+
+div.guild-panel div.guild-info p.guild-name
+{
+    height: 100%;
+    vertical-align: middle;
+    font-size: 18px;
+}

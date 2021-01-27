@@ -1,0 +1,11 @@
+*
+{
+    font-family: 'Quicksand', sans-serif;
+    box-sizing: content-box;
+}
+
+body
+{
+    margin: 0;
+    background-color: rgb(235, 245, 250);
+}
