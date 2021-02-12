@@ -1,0 +1,78 @@
+.poll
+{
+    display: block;
+    margin: 20px;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom right, rgb(235, 245, 248), rgb(188, 224, 236));
+    border-radius: 15px;
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+    box-shadow: 
+        5px 5px 10px rgba(0, 0, 0, 0.1),
+        -5px -5px 10px rgba(255, 255, 255, 1);
+    transition-duration: 200ms;
+}
+
+.poll:hover
+{
+    transform: scale(0.995);
+    box-shadow: 
+    5px 5px 10px rgba(0, 0, 0, 0.1),
+    -5px -5px 10px rgba(255, 255, 255, 1),
+    inset 5px 5px 10px rgba(0, 0, 0, 0.07),
+    inset -5px -5px 10px rgba(255, 255, 255, 0.3);
+}
+
+.poll:active
+{
+    transform: scale(0.99);
+    box-shadow: 
+    5px 5px 10px rgba(0, 0, 0, 0.1),
+    -5px -5px 10px rgba(255, 255, 255, 1),
+    inset 5px 5px 10px rgba(0, 0, 0, 0.13),
+    inset -5px -5px 10px rgba(255, 255, 255, 0.4);
+}
+
+.poll p
+{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.poll p.A
+{
+    display: table;
+    margin-top: 15px;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 7px;
+}
+
+.poll p.A.winner
+{
+    background-color: rgb(0, 190, 0);
+}
+
+.poll p.A.undefined
+{
+    background-color: rgb(255, 174, 0);
+}
+
+.poll p.A.error
+{
+    background-color: rgb(255, 0, 0);
+}
+
+.poll.create
+{
+    background: linear-gradient(to right, rgb(0, 153, 255), rgb(48, 203, 255));
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+}

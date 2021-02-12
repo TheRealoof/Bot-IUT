@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+        <title>Jean Bon Dashboard</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+        <link rel="stylesheet" href="/dashboard/css/style.css">
+        <link rel="stylesheet" href="/dashboard/css/side-panel.css">
+        <link rel="stylesheet" href="/dashboard/css/dashboard.css">
+        <link rel="stylesheet" href="/dashboard/css/admin.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <script src="/dashboard/js/dashboard.js"></script>
+    </head>
+
+    <body>
+        <%- include('side-panel') %> 
+
+        <div class="dashboard">
+
+            <h1>Administration</h1>
+
+            <form action="" method="POST">
+                <div class="setting">
+                    <h2>Sondages</h2>
+                    <select name="pollChannel" id="pollChannel">
+                        <option value="disabled">désactivés</option>
+                        <% 
+                            var channels = guild.channels.cache.array();
+                            for(var i = 0; i < channels.length; i++) 
+                            {
+                                if (channels[i].isText())
+                                {
+                                    var selected = guild_db.pollChannel == channels[i].id;
+                                    if (selected) {selected = "selected"} else {selected = ""}
+                        %> 
+                                <option value="<%= channels[i].id %>" <%= selected %> ><%= "#"+channels[i].name %></option>
+                        <%
+                                }
+                            } 
+                        %>
+                    </select>
+                    <p>Selectionnez un salon pour activer cette fonctionnalité</p>
+                </div>
+
+                <input class="submit" type="submit" value="Sauvegarder"> 
+            </form>
+        </div>
+        
+    </body>
+
+</html>

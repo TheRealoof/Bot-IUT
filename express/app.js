@@ -16,7 +16,7 @@ module.exports = {
         app.use( session ( {
             secret: 'secret',
             cookie: {
-                maxAge: 1000 * 60 * 60 * 24
+                maxAge: 1000 * 60 * 60 * 24 * 7
             },
             resave: false,
             saveUninitialized: false,

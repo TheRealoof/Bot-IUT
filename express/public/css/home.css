@@ -1,4 +1,10 @@
 @media only screen and (min-width: 1000px) {
+
+    body
+    {
+        overflow-x: hidden;
+    }
+
     div.center p
     {
         font-size: 24px;
@@ -15,7 +21,24 @@
     div.server-panel
     {
         flex-direction: row;
-        height: 400px;
+        height: auto;
+    }
+
+    div.server-panel div.server
+    {
+        height: 450px;
+    }
+
+    div.server-panel div.server div.tag
+    {
+        margin: 10px 0 20px 0;
+    }
+
+    div.server-panel div.server div.tag p
+    {
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 6px;
     }
 }
 
@@ -37,6 +60,23 @@
     div.server-panel
     {
         flex-direction: column;
+    }
+
+    div.server-panel div.server
+    {
+        height: 600px;
+    }
+
+    div.server-panel div.server div.tag
+    {
+        margin: 20px 0 20px 0;
+    }
+
+    div.server-panel div.server div.tag p
+    {
+        padding: 10px 20px;
+        font-size: 24px;
+        border-radius: 12px;
     }
 }
 
@@ -92,20 +132,33 @@ div.server-panel
     display: flex;
     flex-wrap: nowrap;
     justify-content: right;
-    overflow: auto;
+    overflow-x: auto;
 }
 
 div.server-panel div.server
 {
     min-width: 400px;
     margin: auto;
-    height: 100%;
 }
 
-div.server-panel div.server p
+div.server-panel div.server p.server-name
 {
-    margin: 70px 0 150px 0;
+    margin: 50px 0 10px 0;
     padding: 0;
+}
+
+div.server-panel div.server div.tag
+{
+    position: relative;
+    padding: 0;
+}
+
+div.server-panel div.server div.tag p
+{
+    margin: auto;
+    color: white;
+    background-color: red;
+    width: fit-content;
 }
 
 a.server-link img

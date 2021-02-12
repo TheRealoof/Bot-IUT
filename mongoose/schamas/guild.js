@@ -6,7 +6,8 @@ const guildSchema = mongoose.Schema({
         "type": String,
         "default": "!"
     },
-    logChannel: String
+    logChannel: String,
+    pollChannel: String
 })
 
 module.exports = mongoose.model("Guild", guildSchema);

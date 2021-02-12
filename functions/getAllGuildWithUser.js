@@ -11,7 +11,10 @@ module.exports = async (user) => {
         let guildmember = await getGuildMember(botGuilds[i], user);
         if (guildmember)
         {
-            guilds.push(botGuilds[i]);
+            guilds.push({
+                guild: botGuilds[i],
+                member: guildmember
+            });
         }
     }
 

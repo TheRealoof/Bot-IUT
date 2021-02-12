@@ -1,0 +1,24 @@
+<div id="side-panel" class="panel-close">
+    <button class="btn-close open-only" onclick="openSidepanel()"></button>
+    <div class="side-panel" >
+        <div class="menu">
+            <div class="button shading"><button onclick="openSidepanel()"><img src="/dashboard/images/menu.png" alt=""></button></div>
+            <div class="button shading open-only open-only-desktop"><a href="/dashboard"><img src="/dashboard/images/home.png" alt=""></a></div>
+            <div class="guild-panel shading open-only open-only-desktop">
+                <img class="guild-icon" src="<%= guildicon %>" alt="">
+                <div class="guild-info">
+                    <p class="guild-name"><%= guildname %></p>
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+            <a class="button open-only" href="<%= url %>/">Vue d'ensemble</a>
+            <% if (guildmember.hasPermission('ADMINISTRATOR')) { %> 
+            <a class="button open-only" href="<%= url %>/admin">Administration</a>
+            <% } %> 
+            <% if (guild_db.pollChannel) { %> 
+                <a class="button open-only" href="<%= url %>/polls">Sondages</a>
+            <% } %> 
+        </div>
+    </div>
+</div>

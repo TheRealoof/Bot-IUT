@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+        <title>Jean Bon Dashboard</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+        <link rel="stylesheet" href="/dashboard/css/style.css">
+        <link rel="stylesheet" href="/dashboard/css/side-panel.css">
+        <link rel="stylesheet" href="/dashboard/css/dashboard.css">
+        <link rel="stylesheet" href="/dashboard/css/poll-details.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <script src="/dashboard/js/dashboard.js"></script>
+    </head>
+
+    <body>
+        <%- include('side-panel') %> 
+
+        <div class="dashboard">
+            
+            <h1>Détails du sondage</h1>
+
+            <% 
+                const poll = polls_db.find(poll => poll.messageId == poll_id);
+                const responses = poll.poll.responses;
+                var totalVotes = 0;
+                var higher = 0;
+                var tie = false;
+                for (var i = 0; i < responses.length; i++)
+                {
+                    totalVotes = totalVotes + responses[i].votes
+                    if (responses[i].votes >= higher ) {tie = true}
+                    if (responses[i].votes > higher ) {higher = responses[i].votes; tie = false}
+                }
+                var result = {};
+                if (responses[0].votes == undefined) {result.text = "✖ Une erreur est survenue : impossible de récupérer les résultats"; result.class = "error"}
+                else if (!tie && higher > 0) {result.text = "✔ " + responses.find(response => response.votes == higher).response; result.class = "winner"} 
+                else {result.text = "~ Indéterminé"; result.class = "undefined"}
+            %> 
+
+            <div class="poll-details">
+                <p class="message"><%= poll.poll.message  %> </p>
+                <p class=<%- '"result ' + result.class + '"' %>><%= result.text %></p>
+                <p class="voters"><%- ((responses[0].votes == undefined) ? "": ("(" + totalVotes + ((totalVotes > 1) ? " votes":" vote") + ")")) %></p>
+
+                <div class="stats">
+
+                    <% 
+                    for (var i = 0; i < responses.length; i++)
+                    {
+                        const percent = (totalVotes > 0) ? Math.trunc(responses[i].votes*100/totalVotes) : 0;
+                        const response = responses[i].response
+                    %> 
+
+                    <div class="stat">
+                        <p class="response"><%= (response.length > 19) ? response.slice(0, 18) + "..." : response %> </p>
+                        <div class="percent_container"><div class="percent" style=<%- '"width: ' + percent*((percent == 0) ? 0 : totalVotes/higher) + '%;"' %> ><p><%- ((responses[0].votes == undefined) ? "": percent + "%")%></p></div></div>
+                    </div>
+
+                    <%
+                    } 
+                    %>
+
+                </div>
+            </div>
+            
+        </div>
+        
+    </body>
+
+</html>
