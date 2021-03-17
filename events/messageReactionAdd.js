@@ -41,7 +41,6 @@ async function fetchReactions(reactions)
 {
     for (var i = 0; i < reactions.length; i++)
     {
-        const reaction = await reactions[i].users.fetch()
-        console.log(reaction);
+        const reaction = await reactions[i].users.fetch();
     }
 }

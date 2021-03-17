@@ -5,19 +5,6 @@
         overflow-x: hidden;
     }
 
-    div.center p
-    {
-        font-size: 24px;
-    }
-
-    div.center a.connect-btn
-    {
-        width: 150px;
-        font-size: 20px;
-        padding: 25px 50px;
-        border-radius: 30px;
-    }
-
     div.server-panel
     {
         flex-direction: row;
@@ -29,33 +16,9 @@
         height: 450px;
     }
 
-    div.server-panel div.server div.tag
-    {
-        margin: 10px 0 20px 0;
-    }
-
-    div.server-panel div.server div.tag p
-    {
-        padding: 5px 10px;
-        font-size: 12px;
-        border-radius: 6px;
-    }
 }
 
 @media only screen and (max-width: 999px) {
-    div.center p
-    {
-        font-size: 56px;
-        padding: 128px;
-    }
-
-    div.center a.connect-btn
-    {
-        width: 400px;
-        font-size: 48px;
-        padding: 50px 100px;
-        border-radius: 60px;
-    }
 
     div.server-panel
     {
@@ -64,22 +27,15 @@
 
     div.server-panel div.server
     {
-        height: 600px;
+        height: 500px;
     }
 
-    div.server-panel div.server div.tag
+    a.server-link
     {
-        margin: 20px 0 20px 0;
+        margin-top: 50px;
     }
 
-    div.server-panel div.server div.tag p
-    {
-        padding: 10px 20px;
-        font-size: 24px;
-        border-radius: 12px;
-    }
 }
-
 
 div.center
 {
@@ -92,7 +48,18 @@ div.center
     text-align: center;
 }
 
+div.center p
+{
+    font-size: 24px;
+}
 
+div.center a.connect-btn
+{
+    width: 150px;
+    font-size: 20px;
+    padding: 25px 50px;
+    border-radius: 30px;
+}
 
 div.center a.connect-btn
 {
@@ -153,6 +120,18 @@ div.server-panel div.server div.tag
     padding: 0;
 }
 
+div.server-panel div.server div.tag
+{
+    margin: 10px 0 20px 0;
+}
+
+div.server-panel div.server div.tag p
+{
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
 div.server-panel div.server div.tag p
 {
     margin: auto;
@@ -176,7 +155,8 @@ a.server-link
 {
     position: relative;
     display: block;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     width: 256px;
     height: 256px;
     border-radius: 50%;

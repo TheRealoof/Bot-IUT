@@ -8,7 +8,10 @@ router.get('/', async (req, res) => {
     {
         var user = await getUserById(req.user);
         
-        var userGuilds = await getAllGuildWithUser(user);
+        var userGuilds;
+        
+        if (user)
+            userGuilds = await getAllGuildWithUser(user);
 
         res.render('servers', {
             guilds: userGuilds

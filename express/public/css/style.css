@@ -2,6 +2,7 @@
 {
     font-family: 'Quicksand', sans-serif;
     box-sizing: content-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body
