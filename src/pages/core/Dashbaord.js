@@ -1,7 +1,8 @@
 import { React, useEffect, useState } from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom"
 import axios from 'axios';
 import DashbaordHome from './DashbaordHome';
+import './styles/Dashboard.scss';
 
 const LOGIN_STATE = {
     LOADING: 0,
@@ -9,9 +10,23 @@ const LOGIN_STATE = {
     UNAUTHORIZED: 2
 }
 
+const ServerItem = ({server}) => {
+    return (
+        <NavLink exact to={"/dashboard/" + server.id} style={{ textDecoration: 'none' }}>
+            <div className="server-item">
+                <div className="container">
+                    <img src={(server.icon) ? "https://cdn.discordapp.com/icons/"+server.id+"/"+server.icon+".png?size=128" : ""} alt="Serveur" className="server-img"></img>
+                    <p className="server-name">{server.name}</p>
+                </div>
+            </div>                            
+        </NavLink>
+    )
+}
+
 const Dashbaord = () => {
     const [loginState, setLoginState] = useState(LOGIN_STATE.LOADING);
     const [discordUser, setDiscordUser] = useState("");
+    const [servers, setServers] = useState([]);
 
     useEffect( () => {
         axios.get("https://discord.com/api/users/@me", {
@@ -27,9 +42,17 @@ const Dashbaord = () => {
             console.log(error.response.status);
             setLoginState(LOGIN_STATE.UNAUTHORIZED);
         });
-    }, []);
 
-    //console.log(discordUser);
+        axios.get("https://discord.com/api/users/@me/guilds", {
+            headers: {
+                Authorization: 'Bearer ' + window.localStorage.getItem('access_token')
+            }
+        })
+        .then( (res) => {
+            setServers(res.data)
+        })
+        .catch( (err) => {console.log(err);} );
+    }, []);
 
     var elements;
 
@@ -43,11 +66,21 @@ const Dashbaord = () => {
         
         case LOGIN_STATE.AUTHORIZED:
             elements = (
-                <BrowserRouter>
-                    <Switch>
-                        <Route path="/dashboard" exact component={props => <DashbaordHome discordUser={discordUser}/>}/>
-                    </Switch>
-                </BrowserRouter>
+                <>
+                    <div className="servers">
+                        {servers.map( (server) => (
+                            <ServerItem key={server.id} server={server}/>
+                        ))}
+                    </div>
+                    <div className="dashboard">
+                        <BrowserRouter>
+                            <Switch>
+                                <Route path="/dashboard" exact component={props => <DashbaordHome discordUser={discordUser}/>}/>
+                            </Switch>
+                        </BrowserRouter>
+                    </div>
+                </>
+
             );
             break;
         

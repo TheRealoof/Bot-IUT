@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Error_404 from './pages/core/Error_404';
@@ -7,9 +7,6 @@ import DiscordRedirect from './pages/core/Redirect';
 import Dashbaord from './pages/core/Dashbaord';
 
 function App() {
-
-    /*
-*/
     return (
         <BrowserRouter>
             <Switch>

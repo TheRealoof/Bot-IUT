@@ -1,0 +1,48 @@
+div.title
+{
+    position: absolute;
+    top: 60px;
+    left: 10vw;
+
+    h1
+    {
+        margin: 0;
+        font-size: 70px;
+    }
+}
+
+div.profile
+{
+    position: absolute;
+    top: 60px;
+    right: 10vw;
+    display: flex;
+    border: solid black 1px;
+    height: 70px;
+    width: 300px;
+
+    img.avatar
+    {
+        height: 100%;
+    }
+
+    div.tag
+    {
+        padding: 20px;
+
+        p
+        {
+            margin: 0;
+        }
+    }
+}
+
+div.tiles
+{
+    position: absolute;
+    top: 230px;
+    bottom: 100px;
+    left: 10vw;
+    right: 10vw;
+    border: solid black 1px;
+}
