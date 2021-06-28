@@ -4,7 +4,6 @@ import axios from 'axios';
 import DashbaordModulesRouter from './DashboardModulesRouter';
 import Loading from './Loading';
 import './styles/Dashboard.scss';
-require('dotenv').config();
 
 const LOGIN_STATE = {
     LOADING: 0,
@@ -12,7 +11,7 @@ const LOGIN_STATE = {
     UNAUTHORIZED: 2
 }
 
-const DISCORD_AUTH = process.env.DISCORD_AUTH || "https://discord.com/api/oauth2/authorize?client_id=802584984581439528&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=token&scope=guilds";
+const DISCORD_AUTH = process.env.REACT_APP_DISCORD_AUTH;
 
 const ServerItem = ({server}) => {
     return (
