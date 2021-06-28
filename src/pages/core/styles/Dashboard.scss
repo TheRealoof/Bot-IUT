@@ -12,7 +12,7 @@ div.servers
     animation-name: serverPanelSlide;
     animation-duration: 0.5s;
 
-    div.server-item
+    a.server-item
     {
         height: 80px;
         width: 300px;
@@ -21,6 +21,9 @@ div.servers
         align-items: center;
         transition-duration: 200ms;
         cursor: pointer;
+        text-decoration: none;
+        border-left: solid black 0px;
+        border-radius: 0px;
         animation-name: fadeIn;
         animation-duration: 0.5s;
 
@@ -54,9 +57,15 @@ div.servers
         }
     }
 
-    div.server-item:hover
+    a.server-item:hover
     {
         background-color: rgb(40, 40, 40);
+    }
+
+    a.server-item.active
+    {
+        border-left: solid white 5px;
+        border-radius: 5px;
     }
 }
 
@@ -84,7 +93,7 @@ div.servers:hover
 {
     width: 300px;
 
-    div.server-item
+    a.server-item
     {
         div.container
         {

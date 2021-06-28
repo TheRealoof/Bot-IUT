@@ -1,8 +1,10 @@
 import { React, useEffect, useState } from 'react';
-import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom"
+import { Switch, Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
-import DashbaordHome from './DashbaordHome';
+import DashbaordModulesRouter from './DashboardModulesRouter';
+import Loading from './Loading';
 import './styles/Dashboard.scss';
+require('dotenv').config();
 
 const LOGIN_STATE = {
     LOADING: 0,
@@ -10,15 +12,15 @@ const LOGIN_STATE = {
     UNAUTHORIZED: 2
 }
 
+const DISCORD_AUTH = process.env.DISCORD_AUTH || "https://discord.com/api/oauth2/authorize?client_id=802584984581439528&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=token&scope=guilds";
+
 const ServerItem = ({server}) => {
     return (
-        <NavLink exact to={"/dashboard/" + server.id} style={{ textDecoration: 'none' }}>
-            <div className="server-item">
+        <NavLink exact to={"/dashboard/" + server.id} className="server-item" activeClassName="active">
                 <div className="container">
-                    <img src={(server.icon) ? "https://cdn.discordapp.com/icons/"+server.id+"/"+server.icon+".png?size=128" : ""} alt="Serveur" className="server-img"></img>
+                    <img src={(server.icon) ? "https://cdn.discordapp.com/icons/"+server.id+"/"+server.icon+".png?size=128" : "/default-server-icon.png"} alt="Serveur" className="server-img"></img>
                     <p className="server-name">{server.name}</p>
-                </div>
-            </div>                            
+                </div>                         
         </NavLink>
     )
 }
@@ -60,7 +62,7 @@ const Dashbaord = () => {
     {
         case LOGIN_STATE.LOADING:
             elements = (
-                <p>Chargement...</p>
+                <Loading/>
             );
             break;
         
@@ -73,11 +75,10 @@ const Dashbaord = () => {
                         ))}
                     </div>
                     <div className="dashboard">
-                        <BrowserRouter>
-                            <Switch>
-                                <Route path="/dashboard" exact component={props => <DashbaordHome discordUser={discordUser}/>}/>
-                            </Switch>
-                        </BrowserRouter>
+                        <Switch>
+                            <Route path="/dashboard" exact component={props => <DashbaordModulesRouter discordUser={discordUser} servers={servers}/>}/>
+                            <Route path="/dashboard/:server_id" component={props => <DashbaordModulesRouter discordUser={discordUser} servers={servers}/>}/>
+                        </Switch>
                     </div>
                 </>
 
@@ -85,13 +86,14 @@ const Dashbaord = () => {
             break;
         
         case LOGIN_STATE.UNAUTHORIZED:
-            window.location.href = "https://discord.com/api/oauth2/authorize?client_id=802584984581439528&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=token&scope=guilds";
+            window.location.href = DISCORD_AUTH;
             break;
 
         default:
-            window.location.href = "https://discord.com/api/oauth2/authorize?client_id=802584984581439528&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=token&scope=guilds";
+            window.location.href = DISCORD_AUTH;
             break;
     }
+
     return (
         <>
             {elements}

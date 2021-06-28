@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const PollsNavLink = () => {
+const PollsNavLink = ({base_url}) => {
     return (
-        <NavLink exact to="/dashboard/polls">
+        <NavLink to={base_url + "/polls"}>
             Sondages
         </NavLink>
     );
