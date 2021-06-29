@@ -1,6 +1,7 @@
 import React from 'react';
 import PollsNavLink from "./polls/PollsNavLink"
 import { useParams } from 'react-router';
+import SampleModuleNavLink from './sample-module/SampleModuleNavLink';
 
 const ModulesNavLinks = () => {
     const {server_id} = useParams();
@@ -10,6 +11,22 @@ const ModulesNavLinks = () => {
     return (
         <>
             <PollsNavLink base_url={base_url}/>
+            <SampleModuleNavLink base_url={base_url} size={"small"}/>
+            <SampleModuleNavLink base_url={base_url} size={"medium"}/>
+            <SampleModuleNavLink base_url={base_url} size={"small"}/>
+            <SampleModuleNavLink base_url={base_url} size={"medium"}/>
+            <SampleModuleNavLink base_url={base_url} size={"large"}/>
+            <SampleModuleNavLink base_url={base_url} size={"small"}/>
+            <SampleModuleNavLink base_url={base_url} size={"large"}/>
+            <SampleModuleNavLink base_url={base_url} size={"small"}/>
+            <SampleModuleNavLink base_url={base_url} size={"small"}/>
+            <SampleModuleNavLink base_url={base_url} size={"medium"}/>
+            <SampleModuleNavLink base_url={base_url} size={"small"}/>
+            <SampleModuleNavLink base_url={base_url} size={"large"}/>
+            <SampleModuleNavLink base_url={base_url} size={"large"}/>
+            <SampleModuleNavLink base_url={base_url} size={"small"}/>
+            <SampleModuleNavLink base_url={base_url} size={"medium"}/>
+            <SampleModuleNavLink base_url={base_url} size={"small"}/>
         </>
     );
 };

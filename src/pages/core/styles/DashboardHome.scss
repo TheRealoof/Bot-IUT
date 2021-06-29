@@ -1,3 +1,8 @@
+@import '../../../Variables.scss';
+
+$dark_shadow: rgba(0, 0, 0, .1);
+$light_shadow: rgba(255, 255, 255, .2);
+
 div.title
 {
     position: absolute;
@@ -8,6 +13,7 @@ div.title
     {
         margin: 0;
         font-size: 70px;
+        color: $font-color;
     }
 }
 
@@ -33,16 +39,91 @@ div.profile
         p
         {
             margin: 0;
+            color: $font-color;
         }
     }
 }
 
-div.tiles
+div.body
 {
     position: absolute;
+    display: block;
     top: 230px;
-    bottom: 100px;
-    left: 10vw;
-    right: 10vw;
-    border: solid black 1px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    overflow-x: auto;
+}
+
+$tile-width: 160px;
+
+div.tiles
+{
+    margin-left: 10vw;
+    margin-right: 10vw;
+    display: grid;
+    grid-auto-flow: dense;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, $tile-width);
+    justify-content: center;
+}
+
+a.tile
+{
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: $font-color;
+    padding: 25px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px $dark_shadow,
+    -5px -5px 10px $light_shadow;
+    transition-duration: 200ms;
+    z-index: 1;
+}
+
+a.tile.large
+{
+    width: $tile-width*2+10;
+    height: $tile-width*2+10;
+    grid-column: span 2;
+    grid-row: span 2;
+    font-size: 22px;
+}
+
+a.tile.medium
+{
+    width: $tile-width*2+10;
+    height: $tile-width;
+    grid-column: span 2;
+    grid-row: span;
+    font-size: 22px;
+}
+
+a.tile.small
+{
+    width: $tile-width;
+    height: $tile-width;
+    grid-column: span ;
+    grid-row: span 1;
+    font-size: 16px;
+}
+
+a.tile:hover
+{
+    box-shadow: 3px 3px 7px $dark_shadow,
+    -3px -3px 7px $light_shadow;
+    filter: brightness(1.05);
+}
+
+a.tile:active
+{
+    box-shadow: 2px 2px 5px $dark_shadow,
+    -2px -2px 5px $light_shadow;
+    transform: scale(0.99);
+    filter: brightness(1.1);
 }

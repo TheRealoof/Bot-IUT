@@ -36,8 +36,10 @@ const DashbaordHome = ({discordUser, server}) => {
                 <h1>{serverName}</h1>
             </div>
             {profile}
-            <div className="tiles">
-                <ModulesNavLinks/>
+            <div className="body">
+                <div className="tiles">
+                    <ModulesNavLinks/>
+                </div>
             </div>
         </>
     );
@@ -45,7 +47,7 @@ const DashbaordHome = ({discordUser, server}) => {
     return (
         <>
             {profile}
-            <div className="tiles">
+            <div className="body">
                 <h1>Aucun serveur selectionné</h1>
             </div>
         </>
