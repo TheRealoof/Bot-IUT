@@ -1,0 +1,13 @@
+div.centered-message
+{
+    display: flex;
+    align-content: center;
+    height: 100%;
+    width: 100%;
+
+    p
+    {
+        margin: auto auto;
+        font-size: 28px;
+    }
+}

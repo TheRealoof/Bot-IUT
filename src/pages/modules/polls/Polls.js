@@ -1,8 +1,9 @@
 import React from 'react';
+import CenteredMessage from '../../core/CenteredMessage';
 
 const Polls = () => {
     return (
-        <h1>Sondages</h1>
+        <CenteredMessage message={"Sondages"}/>
     );
 };
 

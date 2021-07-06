@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react';
-import { Switch, Route, NavLink } from 'react-router-dom';
+import { Switch, Route, NavLink, useLocation } from 'react-router-dom';
+import { matchPath } from 'react-router'
 import axios from 'axios';
 import DashbaordModulesRouter from './DashboardModulesRouter';
 import Loading from './Loading';
@@ -13,13 +14,24 @@ const LOGIN_STATE = {
 
 const DISCORD_AUTH = process.env.REACT_APP_DISCORD_AUTH;
 
-const ServerItem = ({server}) => {
+const ServerItem = (props) => {
+    const server = props.server;
+
+    const location = useLocation();
+    const active = () => { 
+        return matchPath(location.pathname, {
+            path: '/dashboard/' + server.id,
+            exact: false,
+            strict: false
+        })
+    }
+
     return (
-        <NavLink exact to={"/dashboard/" + server.id} className="server-item" activeClassName="active">
-                <div className="container">
-                    <img src={(server.icon) ? "https://cdn.discordapp.com/icons/"+server.id+"/"+server.icon+".png?size=128" : "/default-server-icon.png"} alt="Serveur" className="server-img"></img>
-                    <p className="server-name">{server.name}</p>
-                </div>                         
+        <NavLink exact to={"/dashboard/" + server.id} className="server-item" activeClassName="active" isActive={active}>
+            <div className="container">
+                <img src={(server.icon) ? "https://cdn.discordapp.com/icons/"+server.id+"/"+server.icon+".png?size=128" : "/default-server-icon.png"} alt="Serveur" className="server-img"></img>
+                <p className="server-name">{server.name}</p>
+            </div>                         
         </NavLink>
     )
 }
@@ -30,7 +42,7 @@ const Dashbaord = () => {
     const [servers, setServers] = useState([]);
 
     useEffect( () => {
-        axios.get("https://discord.com/api/users/@me", {
+        axios.get(process.env.REACT_APP_API + "/me", {
             headers: {
                 Authorization: 'Bearer ' + window.localStorage.getItem('access_token')
             }
@@ -44,7 +56,7 @@ const Dashbaord = () => {
             setLoginState(LOGIN_STATE.UNAUTHORIZED);
         });
 
-        axios.get("https://discord.com/api/users/@me/guilds", {
+        axios.get(process.env.REACT_APP_API + "/servers", {
             headers: {
                 Authorization: 'Bearer ' + window.localStorage.getItem('access_token')
             }
@@ -72,6 +84,12 @@ const Dashbaord = () => {
                         {servers.map( (server) => (
                             <ServerItem key={server.id} server={server}/>
                         ))}
+                        <a href={process.env.REACT_APP_INVITE_LINK} className="server-item">
+                            <div className="container">
+                                <img src="/add-server-icon.png" alt="Ajouter un serveur" className="server-img"></img>
+                                <p className="server-name">Ajouter un serveur</p>
+                            </div>                         
+                        </a>
                     </div>
                     <div className="dashboard">
                         <Switch>

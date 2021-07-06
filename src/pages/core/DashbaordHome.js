@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import ModulesNavLinks from '../modules/ModulesNavLinks';
+import CenteredMessage from './CenteredMessage';
 import './styles/DashboardHome.scss';
 
 const DashbaordHome = ({discordUser, server}) => {
@@ -48,7 +49,7 @@ const DashbaordHome = ({discordUser, server}) => {
         <>
             {profile}
             <div className="body">
-                <h1>Aucun serveur selectionné</h1>
+                <CenteredMessage message={"Aucun serveur sélectionné"}/>
             </div>
         </>
     );
