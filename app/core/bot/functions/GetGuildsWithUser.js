@@ -1,6 +1,13 @@
 const Client = require('../index');
 
 module.exports = async (user_id) => {
-    const guilds = Client.guilds.cache.filter(async guild => await guild.members.fetch(user_id)).array();
-    return guilds;
+    let resultArray = [];
+
+    for (let guild of Client.guilds.cache.array())
+    {
+        let res = await guild.members.fetch(user_id).catch(e => {});
+        if (res) resultArray.push(guild);
+    };
+
+    return resultArray;
 }

@@ -81,7 +81,7 @@ async function AddResults(polls)
                 const reaction = await reactions.resolve(response.emoji);
                 const count = (reaction) ? reaction.count : 0;
                 result[i].poll.responses[j].votes = count;
-                console.log("votes : " + result[i].poll.responses[j].votes);
+                //console.log("votes : " + result[i].poll.responses[j].votes);
             }
     }
 

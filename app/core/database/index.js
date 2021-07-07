@@ -13,11 +13,11 @@ const options = {
     family: 4 // Use IPv4, skip trying IPv6
 };
 
-mongoose.connection.on("connecting", () => console.log("Connection à la base données..."));
+mongoose.connection.on("connecting", () => console.log("Connexion à la base données..."));
 mongoose.connection.on("connected", () => {
     console.log("Connecté à la base données");
 });
-mongoose.connection.on("disconnecting", () => console.log("Déconnection de la base données..."));
+mongoose.connection.on("disconnecting", () => console.log("Déconnexion de la base données..."));
 mongoose.connection.on("disconnected", () => console.log("Déconnecté de la base données"));
 
 mongoose.connect(db, options).catch(e => {console.log(e)});
