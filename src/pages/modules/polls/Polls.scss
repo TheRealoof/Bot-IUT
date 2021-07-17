@@ -23,12 +23,18 @@ a.tile.polls:active
 
 a.tile.polls div.preview-poll
 {
-    position: absolute;
-    top: 120px;
-    bottom: 30px;
-    left: 30px;
-    right: 30px;
     font-size: 20px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    animation-duration: 500ms;
+
+    div.container
+    {
+        display: block;
+        width: 100%;
+    }
 
     p.q
     {
@@ -64,5 +70,56 @@ a.tile.polls div.preview-poll
             right: -10px;
             width: 0;
         }
+    }
+
+    p.info
+    {
+        margin: 0;
+        margin-top: 30px;
+        font-weight: lighter;
+        font-size: 18px;
+    }
+}
+
+$slide_in_distance: 200px;
+$slide_out_distance: 100px;
+
+a.tile.polls div.preview-poll.in
+{
+    animation-name: preview-poll-in;
+    opacity: 1;
+    margin-left: 0px;
+    animation-timing-function: ease-out;
+}
+
+a.tile.polls div.preview-poll.out
+{
+    animation-name: preview-poll-out;
+    opacity: 0;
+    margin-left: $slide_in_distance;
+    animation-timing-function: ease-in;
+}
+
+@keyframes preview-poll-in 
+{
+    from {
+        opacity: 0;
+        margin-left: $slide_in_distance;
+    }
+    to {
+        opacity: 1;
+        margin-left: 0px;
+    }
+}
+
+@keyframes preview-poll-out 
+{
+    from {
+        opacity: 1;
+        margin-left: 0px;
+    }
+    to {
+        opacity: 0;
+        margin-left: -$slide_out_distance;
     }
 }

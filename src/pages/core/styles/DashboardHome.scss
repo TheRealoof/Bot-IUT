@@ -75,6 +75,7 @@ a.tile
 {
     display: block;
     position: relative;
+    overflow: hidden;
     text-decoration: none;
     color: $font-color;
     padding: 25px;
