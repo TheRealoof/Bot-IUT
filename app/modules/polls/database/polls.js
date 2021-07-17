@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Client = require('../../../core/bot');
 
 const pollSchema = mongoose.Schema({
     messageId: String,
@@ -48,42 +47,10 @@ async function get(guildId, channelId, messageId)
 
 async function getAllInGuild(guildId)
 {
-    let polls = await poll.find({guildId: guildId});
-    polls = await AddResults(polls);
-    return polls;
+    return await poll.find({guildId: guildId}).lean();
 }
 
 async function getAll()
 {
     return await poll.find({});
-}
-
-async function AddResults(polls)
-{
-    let result = polls;
-    for (let i = 0; i < polls.length; i++)
-    {
-        const poll = polls[i];
-        var reactions;
-        try {
-            const guild = await Client.guilds.fetch(poll.guildId);
-            const channel = await guild.channels.resolve(poll.channelId);
-            const message = await channel.messages.fetch(poll.messageId);
-            reactions = message.reactions;
-        }
-        catch (e) {
-        }
-
-        if (reactions)
-            for (let j = 0; j < poll.poll.responses.length; j++)
-            {
-                const response = poll.poll.responses[j];
-                const reaction = await reactions.resolve(response.emoji);
-                const count = (reaction) ? reaction.count : 0;
-                result[i].poll.responses[j].votes = count;
-                //console.log("votes : " + result[i].poll.responses[j].votes);
-            }
-    }
-
-    return result;
 }
