@@ -72,13 +72,18 @@ const PollsNavLinkPreview = ({poll}) => {
                             return (
                                 <>
                                     <p className="a">{poll.responses[0].response}</p>
-                                    <div id="poll_preview_percent_div_0" className="a" style={{width:'0%'}}>
-                                        <p id="poll_preview_percent_text_0">0%</p>
+                                    <div className="poll_preview_percent_div_container">
+                                        <div id="poll_preview_percent_div_0" className="a" style={{width:'0%'}}>
+                                            <p id="poll_preview_percent_text_0">0%</p>
+                                        </div>
                                     </div>
                                     <p className="a">{poll.responses[1].response}</p>
-                                    <div id="poll_preview_percent_div_1" className="a" style={{width:'0%'}}>
-                                        <p id="poll_preview_percent_text_1">0%</p>
+                                    <div className="poll_preview_percent_div_container">
+                                        <div id="poll_preview_percent_div_1" className="a" style={{width:'0%'}}>
+                                            <p id="poll_preview_percent_text_1">0%</p>
+                                        </div>
                                     </div>
+
                                     <p className="info">{ ( () => {
                                         if (!twoChoices)
                                         {
