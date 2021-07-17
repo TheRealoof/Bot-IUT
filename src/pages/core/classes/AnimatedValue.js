@@ -31,7 +31,6 @@ class AnimatedValue
         if (!this.running)
             return;
         
-        
         const frameTime = (Date.now() - object.currentTime)/1000;
         object.currentTime = Date.now();
         const addValue = frameTime*object.speed;
@@ -48,4 +47,4 @@ class AnimatedValue
     }
 }
 
-module.exports = AnimatedValue;
+export default AnimatedValue;
