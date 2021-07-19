@@ -1,22 +1,10 @@
 div.servers
 {
-    display: block;
-    position: absolute;
-    background-color: black;
-    height: 100%;
-    width: 100px;
     transition-duration: 200ms;
-    padding: 20px 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    animation-name: serverPanelSlide;
-    animation-duration: 0.5s;
+    background-color: black;
 
     a.server-item
     {
-        height: 80px;
-        width: 300px;
-        margin: 10px 0;
         display: flex;
         align-items: center;
         transition-duration: 200ms;
@@ -39,33 +27,12 @@ div.servers
                 border-radius: 50%;
                 margin: 0 20px;
             }
-        
-            p.server-name
-            {
-                display: block;
-                color: white;
-                font-weight: bold;
-                margin: auto 0;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                width: 180px;
-                opacity: 0;
-                transition-duration: 200ms;
-                text-decoration: none;
-            }
         }
     }
 
     a.server-item:hover
     {
         background-color: rgb(40, 40, 40);
-    }
-
-    a.server-item.active
-    {
-        border-left: solid white 5px;
-        border-radius: 5px;
     }
 }
 
@@ -89,35 +56,128 @@ div.servers
     }
 }
 
-div.servers:hover
-{
-    width: 300px;
-
-    a.server-item
-    {
-        div.container
-        {
-            p.server-name
-            {
-                opacity: 1;
-            }
-        }
-
-    }
-}
-
 div.dashboard
 {
     display: block;
-    position: absolute;
-    top: 0%;
-    bottom: 0%;
-    left: 100px;
-    right: 0%;
     transition-duration: 200ms;
 }
 
-div.servers:hover + div.dashboard
+/* Phones */
+@media only screen and (max-width: 600px) 
 {
-    transform: translateX(200px);
+    div.servers
+    {
+        display: flex;
+        height: auto;
+        width: 100%;
+        padding: 0 20px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+
+        a.server-item
+        {
+            height: 80px;
+            width: auto;
+            margin: 0 0;
+
+            div.container
+            {
+                p.server-name
+                {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    a.server-item.active
+    {
+        border-top: solid white 5px;
+        border-radius: 5px;
+    }
+
+    div.dashboard
+    {
+        position: initial;
+        overflow-y: scroll;
+    }
+}
+
+/* Computers */
+@media only screen and (min-width: 600px) 
+{
+    div.servers
+    {
+        display: block;
+        height: 100%;
+        width: 100px;
+        padding: 20px 0;
+        position: absolute;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        animation-name: serverPanelSlide;
+        animation-duration: 0.5s;
+
+        a.server-item
+        {
+            height: 80px;
+            width: 300px;
+            margin: 10px 0;
+
+            div.container
+            {
+                p.server-name
+                {
+                    display: block;
+                    color: white;
+                    font-weight: bold;
+                    margin: auto 0;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    width: 180px;
+                    opacity: 0;
+                    transition-duration: 200ms;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    div.servers:hover
+    {
+        width: 300px;
+
+        a.server-item
+        {
+            div.container
+            {
+                p.server-name
+                {
+                    opacity: 1;
+                }
+            }
+
+        }
+    }
+
+    div.servers:hover + div.dashboard
+    {
+        transform: translateX(200px);
+    }
+
+    a.server-item.active
+    {
+        border-left: solid white 5px;
+        border-radius: 5px;
+    }
+
+    div.dashboard
+    {
+        position: absolute;
+        top: 0%;
+        bottom: 0%;
+        left: 100px;
+        right: 0%;
+    }
 }

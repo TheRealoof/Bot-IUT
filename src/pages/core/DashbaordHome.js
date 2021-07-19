@@ -33,10 +33,10 @@ const DashbaordHome = ({discordUser, server}) => {
     if (server)
     return (
         <>
+            {profile}
             <div className="title">
                 <h1>{serverName}</h1>
             </div>
-            {profile}
             <div className="body">
                 <div className="tiles">
                     <ModulesNavLinks/>

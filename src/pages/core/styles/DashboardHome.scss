@@ -5,10 +5,6 @@ $light_shadow: rgba(255, 255, 255, .2);
 
 div.title
 {
-    position: absolute;
-    top: 60px;
-    left: 10vw;
-
     h1
     {
         margin: 0;
@@ -19,9 +15,6 @@ div.title
 
 div.profile
 {
-    position: absolute;
-    top: 60px;
-    right: 10vw;
     display: flex;
     border: solid black 1px;
     height: 70px;
@@ -46,15 +39,74 @@ div.profile
 
 div.body
 {
-    position: absolute;
     display: block;
-    top: 230px;
-    bottom: 0;
-    left: 0;
-    right: 0;
     padding-top: 10px;
     padding-bottom: 50px;
     overflow-x: auto;
+}
+
+/* Phones */
+@media only screen and (max-width: 600px)
+{
+    $tile-width: 160px;
+    $grid-gap: 20px;
+
+    div.tiles
+    {
+        grid-gap: $grid-gap;
+        grid-template-columns: repeat(auto-fill, $tile-width);
+    }
+
+    a.tile.large
+    {
+        width: $tile-width*2+$grid-gap;
+        height: $tile-width*2+$grid-gap;
+    }
+
+    a.tile.medium
+    {
+        width: $tile-width*2+$grid-gap;
+        height: $tile-width;
+    }
+
+    a.tile.small
+    {
+        width: $tile-width;
+        height: $tile-width;
+    }
+}
+
+/* Computers */
+@media only screen and (min-width: 600px) 
+{
+    $tile-width: 160px;
+    $grid-gap: 20px;
+
+    div.tiles
+    {
+        grid-gap: $grid-gap;
+        grid-template-columns: repeat(auto-fill, $tile-width);
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+
+    a.tile.large
+    {
+        width: $tile-width*2+$grid-gap;
+        height: $tile-width*2+$grid-gap;
+    }
+
+    a.tile.medium
+    {
+        width: $tile-width*2+$grid-gap;
+        height: $tile-width;
+    }
+
+    a.tile.small
+    {
+        width: $tile-width;
+        height: $tile-width;
+    }
 }
 
 $tile-width: 160px;
@@ -62,12 +114,8 @@ $grid-gap: 20px;
 
 div.tiles
 {
-    margin-left: 10vw;
-    margin-right: 10vw;
     display: grid;
     grid-auto-flow: dense;
-    grid-gap: $grid-gap;
-    grid-template-columns: repeat(auto-fill, $tile-width);
     justify-content: center;
 }
 
@@ -90,8 +138,6 @@ a.tile
 
 a.tile.large
 {
-    width: $tile-width*2+$grid-gap;
-    height: $tile-width*2+$grid-gap;
     grid-column: span 2;
     grid-row: span 2;
     font-size: 22px;
@@ -99,8 +145,6 @@ a.tile.large
 
 a.tile.medium
 {
-    width: $tile-width*2+$grid-gap;
-    height: $tile-width;
     grid-column: span 2;
     grid-row: span;
     font-size: 22px;
@@ -108,8 +152,6 @@ a.tile.medium
 
 a.tile.small
 {
-    width: $tile-width;
-    height: $tile-width;
     grid-column: span ;
     grid-row: span 1;
     font-size: 16px;
@@ -128,4 +170,53 @@ a.tile:active
     -2px -2px 5px $light_shadow;
     transform: scale(0.99);
     filter: brightness(1.1);
+}
+
+/* Phones */
+@media only screen and (max-width: 600px) 
+{
+    div.title
+    {
+        position: initial;
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    div.profile
+    {
+        position: initial;
+        margin: 30px 0;
+    }
+
+    div.body
+    {
+        position: initial;
+    }
+}
+
+/* Computers */
+@media only screen and (min-width: 600px) 
+{
+    div.title
+    {
+        position: absolute;
+        top: 60px;
+        left: 10vw;
+    }
+
+    div.profile
+    {
+        position: absolute;
+        top: 60px;
+        right: 10vw;
+    }
+
+    div.body
+    {
+        position: absolute;
+        top: 230px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
 }
