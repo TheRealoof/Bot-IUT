@@ -30,8 +30,11 @@ async function AddResults(polls)
 
 ApiRequest("/polls", async (req, res, user) => {
     const guildid = req.query.guildid;
+    const nb = req.query.nb;
     let polls;
     polls = await polls_db.getAllInGuild(guildid);
+    if (nb > 0)
+        polls = polls.slice(0, nb);
     polls = await AddResults(polls);
     res.send(polls);
 });
