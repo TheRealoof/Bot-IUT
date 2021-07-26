@@ -1,28 +1,30 @@
 import { React, useEffect, useState } from 'react';
-import { Switch, useParams, Route } from 'react-router-dom';
-import PollNavLink from './PollNavLink';
-import Poll from './Poll';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../../core/styles/App.scss'
 import './Polls.scss';
+import Loading from '../../core/Loading';
+import PollResponse from './PollResponse';
 
-const Polls = () => {
-    const [polls, setPolls] = useState([]);
+const Poll = () => {
     const {server_id} = useParams();
+    const {poll_id} = useParams();
+    const [poll, setPoll] = useState(undefined);
 
     useEffect( () => {
         const source = axios.CancelToken.source()
-        axios.get(process.env.REACT_APP_API + "/polls", {
+        axios.get(process.env.REACT_APP_API + "/poll", {
             headers: {
                 Authorization: 'Bearer ' + window.localStorage.getItem('access_token')
             },
             params: {
                 guildid: server_id,
+                pollid: poll_id,
             },
             cancelToken: source.token
         })
         .then( (res) => {
-            setPolls(res.data);
+            setPoll(res.data);
         })
         .catch( (error) => {
             if (error.response)
@@ -32,25 +34,27 @@ const Polls = () => {
         return () => {
             source.cancel();
         }
-    }, [server_id]);
+    }, [server_id, poll_id]);
 
-    return (
-        <Switch>
-            <Route path="/dashboard/:server_id/polls/:poll_id" component={props => <Poll/>}/>
-            <Route path="/dashboard/:server_id/polls" exact component={props => 
-                <div className="app">
-                    <h1>Sondages</h1>
+    if (poll)
+        return (
+            <div className="app poll">
+                <h1 className="q">{poll.poll.message}</h1>
+                <div className="answers">
                     {
-                        polls.map((poll) => {
+                        poll.poll.responses.map(response => {
                             return (
-                                <PollNavLink key={poll.messageId} poll={poll}/>
-                            );
+                                <PollResponse key={response._id} response={response}/>
+                            )
                         })
                     }
                 </div>
-            }/>
-        </Switch>
-    );
+            </div>
+        );
+    else
+        return (
+            <Loading/>
+        )
 };
 
-export default Polls;
+export default Poll;

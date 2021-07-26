@@ -5,7 +5,7 @@ import Polls from './polls/Polls';
 const ModulesRoutes = () => {
     return (
         <>
-            <Route path="/dashboard/:server_id/polls" exact component={Polls}/>
+            <Route path="/dashboard/:server_id/polls" component={Polls}/>
         </>
     );
 };
