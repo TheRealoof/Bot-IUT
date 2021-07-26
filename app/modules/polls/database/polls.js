@@ -40,9 +40,9 @@ module.exports = {
     }
 }*/
 
-async function get(guildId, channelId, messageId)
+async function get(guildId, messageId)
 {
-    return await poll.findOne({guildId: guildId, channelId: channelId, messageId: messageId});
+    return await poll.findOne({guildId: guildId, messageId: messageId}).lean();
 }
 
 async function getAllInGuild(guildId)

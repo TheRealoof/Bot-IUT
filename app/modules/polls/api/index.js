@@ -38,3 +38,21 @@ ApiRequest("/polls", async (req, res, user) => {
     polls = await AddResults(polls);
     res.send(polls);
 });
+
+ApiRequest("/poll", async (req, res, user) => {
+    const guildid = req.query.guildid;
+    const pollid = req.query.pollid;
+    let poll;
+    poll = await polls_db.get(guildid, pollid);
+    console.log(poll);
+    if (poll)
+    {
+        poll = await AddResults([poll]);
+        res.send(poll[0]);
+    }
+    else
+    {
+        res.status(404);
+        res.send("not found");
+    }
+});
