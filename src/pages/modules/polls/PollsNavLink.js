@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import PollsNavLinkPreview from './PollsNavLinkPreview';
 import axios from 'axios';
-import './Polls.scss';
+import './PollsNavLink.scss';
 
 const PollsNavLink = ({base_url}) => {
     const [polls, setPolls] = useState([]);
@@ -17,7 +17,8 @@ const PollsNavLink = ({base_url}) => {
                 Authorization: 'Bearer ' + window.localStorage.getItem('access_token')
             },
             params: {
-                guildid: server_id
+                guildid: server_id,
+                nb: 3,
             },
             cancelToken: source.token
         })

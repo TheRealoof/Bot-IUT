@@ -1,136 +1,69 @@
-$dark_shadow: rgba(0, 92, 145, 0.5);
-$light_shadow: rgba(255, 255, 255, .2);
-
-a.tile.polls
+a.poll-nav-link
 {
-    background: linear-gradient(135deg, rgb(42, 160, 180), rgb(23, 101, 146));
-    color: white;
-    box-shadow: 5px 5px 10px $dark_shadow,
-    -5px -5px 10px $light_shadow;
-}
-
-a.tile.polls:hover
-{
-    box-shadow: 3px 3px 7px $dark_shadow,
-    -3px -3px 7px $light_shadow;
-}
-
-a.tile.polls:active
-{
-    box-shadow: 2px 2px 5px $dark_shadow,
-    -2px -2px 5px $light_shadow;
-}
-
-a.tile.polls div.preview-poll
-{
-    font-size: 20px;
-    height: 100%;
+    display: block;
+    position: relative;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
     width: 100%;
-    display: flex;
-    align-items: center;
-    animation-duration: 500ms;
+    transition-duration: 200ms;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.05);
 
-    div.container
+    p
     {
-        display: block;
-        width: 100%;
+        margin: 10px;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     p.q
     {
-        margin: 0;
-        font-weight: normal;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        color: black;
+        font-size: 18px;
     }
 
-    div.answers
+    p.a, p.error
     {
-        width: 100%;
-        margin-top: 20px;
+        color: white;
+        padding: 8px;
+        font-weight: bold;
+        border-radius: 8px;
+        width: fit-content;
     }
 
     p.a
     {
-        margin: 0;
-        margin-top: 25px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        background-color: green;
     }
 
-    div.poll_preview_percent_div_container
+    p.error
     {
-        width: 80%;
+        background-color: red;
     }
+}
 
-    div.a
+/* Computers */
+@media only screen and (min-width: 600px) 
+{
+    a.poll-nav-link:hover
     {
-        position: relative;
-        height: 20px;
-        margin-top: 8px;
-        border-radius: 10px;
-        background: linear-gradient(90deg, rgb(255, 129, 56), rgb(255, 51, 0));
-        box-shadow: 3px 3px 20px rgba(255, 81, 0, 0.5);
-
-        p
-        {
-            margin: 0;
-            position: absolute;
-            right: -10px;
-            width: 0;
-        }
+        background: rgba(0, 0, 0, 0.1);
     }
 
-    p.info
+    a.poll-nav-link:active
     {
-        margin: 0;
-        margin-top: 30px;
-        font-weight: lighter;
-        font-size: 18px;
+        background: rgba(0, 0, 0, 0.15);
     }
 }
 
-$slide_in_distance: 200px;
-$slide_out_distance: 100px;
-
-a.tile.polls div.preview-poll.in
+/* Phones */
+@media only screen and (max-width: 600px) 
 {
-    animation-name: preview-poll-in;
-    opacity: 1;
-    margin-left: 0px;
-    animation-timing-function: ease-out;
-}
-
-a.tile.polls div.preview-poll.out
-{
-    animation-name: preview-poll-out;
-    opacity: 0;
-    margin-left: $slide_in_distance;
-    animation-timing-function: ease-in;
-}
-
-@keyframes preview-poll-in 
-{
-    from {
-        opacity: 0;
-        margin-left: $slide_in_distance;
-    }
-    to {
-        opacity: 1;
-        margin-left: 0px;
-    }
-}
-
-@keyframes preview-poll-out 
-{
-    from {
-        opacity: 1;
-        margin-left: 0px;
-    }
-    to {
-        opacity: 0;
-        margin-left: -$slide_out_distance;
+    a.poll-nav-link:active
+    {
+        background: rgba(0, 0, 0, 0.15);
     }
 }

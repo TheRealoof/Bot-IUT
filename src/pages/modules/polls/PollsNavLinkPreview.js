@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import AnimatedValue from '../../core/classes/AnimatedValue';
-import './Polls.scss';
+import './PollsNavLink.scss';
 
 const PollsNavLinkPreview = ({poll}) => {
     const [animationClass, setAnimationClass] = useState('in');
