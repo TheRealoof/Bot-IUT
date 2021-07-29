@@ -34,18 +34,19 @@ const Poll = () => {
         return () => {
             source.cancel();
         }
-    }, [server_id, poll_id]);
-
+    }, [server_id, poll_id, poll]);
     if (poll)
         return (
             <div className="app poll">
                 <h1 className="q">{poll.poll.message}</h1>
+                <a className="discord-link" href={"https://discord.com/channels/" + poll.guildId + "/" + poll.channelId + "/" + poll.messageId}>Voir dans discord.</a>
+                <p className="nb-votes">{poll.poll.totalVotes + ((poll.poll.totalVotes < 2) ? " vote." : " votes.")}</p>
                 <div className="answers">
                     {
-                        poll.poll.responses.map(response => {
+                        poll.poll.responses.map( (response, index) => {
                             return (
-                                <PollResponse key={response._id} response={response}/>
-                            )
+                                <PollResponse key={response._id} poll={poll} i={index}/>
+                            );
                         })
                     }
                 </div>

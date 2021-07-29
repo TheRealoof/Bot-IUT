@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route } from "react-router-dom"
-import Polls from './polls/Polls';
+import PollsRouter from './polls/PollsRouter';
 
 const ModulesRoutes = () => {
     return (
         <>
-            <Route path="/dashboard/:server_id/polls" component={Polls}/>
+            <Route path="/dashboard/:server_id/polls" component={PollsRouter}/>
         </>
     );
 };

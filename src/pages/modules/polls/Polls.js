@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react';
-import { Switch, useParams, Route } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import PollNavLink from './PollNavLink';
-import Poll from './Poll';
+import Loading from '../../core/Loading';
 import axios from 'axios';
 import '../../core/styles/App.scss'
 import './Polls.scss';
@@ -35,21 +35,23 @@ const Polls = () => {
     }, [server_id]);
 
     return (
-        <Switch>
-            <Route path="/dashboard/:server_id/polls/:poll_id" component={props => <Poll/>}/>
-            <Route path="/dashboard/:server_id/polls" exact component={props => 
-                <div className="app">
-                    <h1>Sondages</h1>
-                    {
-                        polls.map((poll) => {
-                            return (
-                                <PollNavLink key={poll.messageId} poll={poll}/>
-                            );
-                        })
-                    }
-                </div>
-            }/>
-        </Switch>
+        <div className="app">
+            <h1>Sondages</h1>
+            {
+                (() => {
+                    if (polls.length > 0)
+                        return (
+                            polls.map((poll) => {
+                                return (
+                                    <PollNavLink key={poll.messageId} poll={poll}/>
+                                );
+                            })
+                        )
+                    else
+                        return (<Loading/>);
+                })()
+            }
+        </div>
     );
 };
 

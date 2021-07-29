@@ -28,7 +28,7 @@ class AnimatedValue
 
     newFrame(object)
     {
-        if (!this.running)
+        if (!object.running)
             return;
         
         const frameTime = (Date.now() - object.currentTime)/1000;
@@ -38,9 +38,9 @@ class AnimatedValue
             object.value = object.value + ( (object.value < object.targetValue) ? (addValue) : (-addValue) );
         else
             object.value = object.targetValue;
-        if (this.onNewFrame)
+        if (object.onNewFrame)
         {
-            try {this.onNewFrame()} 
+            try {object.onNewFrame()} 
             catch (e) {}
         }
         requestAnimationFrame(() => {object.newFrame(object)})
