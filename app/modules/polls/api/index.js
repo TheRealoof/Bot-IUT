@@ -2,11 +2,13 @@ const ApiRequest = require('../../../core/api/ApiRequest');
 const polls_db = require("../database/polls");
 const Client = require('../../../core/bot');
 
-async function AddResults(polls)
+async function AddDatas(polls)
 {
     let result = polls;
     for (let i = 0; i < polls.length; i++)
     {
+        result[i].deleted = false;
+        result[i].poll.totalVotes = 0;
         const poll = polls[i];
         var reactions;
         try {
@@ -15,7 +17,9 @@ async function AddResults(polls)
             const message = await channel.messages.fetch(poll.messageId);
             reactions = message.reactions;
         }
-        catch (e) {}
+        catch (e) {
+            result[i].deleted = true;
+        }
         if (reactions)
             for (let j = 0; j < poll.poll.responses.length; j++)
             {
@@ -23,6 +27,7 @@ async function AddResults(polls)
                 const reaction = await reactions.resolve(response.emoji);
                 const count = (reaction) ? reaction.count : 0;
                 result[i].poll.responses[j].votes = count;
+                result[i].poll.totalVotes += count;
             }
     }
     return result;
@@ -35,7 +40,7 @@ ApiRequest("/polls", async (req, res, user) => {
     polls = await polls_db.getAllInGuild(guildid);
     if (nb > 0)
         polls = polls.slice(0, nb);
-    polls = await AddResults(polls);
+    polls = await AddDatas(polls);
     res.send(polls);
 });
 
@@ -44,10 +49,9 @@ ApiRequest("/poll", async (req, res, user) => {
     const pollid = req.query.pollid;
     let poll;
     poll = await polls_db.get(guildid, pollid);
-    console.log(poll);
     if (poll)
     {
-        poll = await AddResults([poll]);
+        poll = await AddDatas([poll]);
         res.send(poll[0]);
     }
     else

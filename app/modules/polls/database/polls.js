@@ -47,7 +47,9 @@ async function get(guildId, messageId)
 
 async function getAllInGuild(guildId)
 {
-    return await poll.find({guildId: guildId}).lean();
+    let res = await poll.find({guildId: guildId}).lean();
+    
+    return res.reverse();
 }
 
 async function getAll()
