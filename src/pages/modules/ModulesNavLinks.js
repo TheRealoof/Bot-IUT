@@ -3,8 +3,10 @@ import PollsNavLink from "./polls/PollsNavLink"
 import { useParams } from 'react-router';
 import SampleModuleNavLink from './sample-module/SampleModuleNavLink';
 
-const ModulesNavLinks = () => {
+const ModulesNavLinks = ({server}) => {
     const {server_id} = useParams();
+
+    console.log(server);
 
     const base_url = "/dashboard/" + server_id;
 

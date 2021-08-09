@@ -39,7 +39,7 @@ const DashbaordHome = ({discordUser, server}) => {
             </div>
             <div className="body">
                 <div className="tiles">
-                    <ModulesNavLinks/>
+                    <ModulesNavLinks server={server}/>
                 </div>
             </div>
         </>
