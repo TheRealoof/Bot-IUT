@@ -27,3 +27,15 @@ ApiRequest("/servers", async (req, res, user) => {
     const guilds = await require('../bot/functions/GetGuildsWithUser')(user.id);
     res.send(guilds);
 });
+
+ApiRequest("/server-settings", async (req, res, user) => {
+    const guildId = req.query.server_id;
+    const settings = [
+        {
+            appName: "polls",
+            active: true,
+            pollChannel: "0",
+        }
+    ]
+    res.send(settings);
+});
