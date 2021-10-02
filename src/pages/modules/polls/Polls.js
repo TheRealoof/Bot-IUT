@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import PollNavLink from './PollNavLink';
 import Loading from '../../core/Loading';
 import axios from 'axios';
@@ -36,7 +36,7 @@ const Polls = () => {
 
     return (
         <div className="app">
-            <h1>Sondages</h1>
+            <h1>Sondages<NavLink className="button" to={"/dashboard/" + server_id + "/polls/create"}>Créer un sondage</NavLink></h1>
             {
                 (() => {
                     if (polls.length > 0)

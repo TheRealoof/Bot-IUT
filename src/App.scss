@@ -27,6 +27,15 @@ body
     background-color: $background-color;
 }
 
+input[type="text"]
+{
+    padding: 10px 12px;
+    font-size: 16px;
+    border: solid grey 1px;
+    border-radius: 8px;
+    outline: none;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 8px;

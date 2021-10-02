@@ -1,3 +1,5 @@
+@import '../../../Variables.scss';
+
 a.poll-nav-link
 {
     display: block;
@@ -121,13 +123,13 @@ div.app.poll
 
     a.discord-link
     {
-        color: rgb(0, 119, 255);
+        color: $link-color;
         transition-duration: 200ms;
     }
 
     a.discord-link:hover
     {
-        color: rgb(62, 152, 255);
+        color: $link-color-hover;
     }
 
     div.a
@@ -169,4 +171,9 @@ div.app.poll
             }
         }
     }
+}
+
+div.app.create-poll
+{
+    
 }

@@ -1,37 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Route } from 'react-router-dom';
-import axios from 'axios';
 import DashbaordHome from './DashbaordHome';
+import Settings from './Settings';
 import ModulesRoutes from '../modules/ModulesRoutes';
+import ApiRequest from './functions/ApiRequest';
 
 const DashboardModulesRouter = ({discordUser, servers}) => {
     const {server_id} = useParams();
-    const [server, setServer] = useState({});
+    const [server, setServer] = useState();
 
     useEffect( () => {
         if (!servers) return;
 
         let tmp_server = servers.find(server => server.id === server_id);
-        axios.get(process.env.REACT_APP_API + "/server-settings", {
-            headers: {
-                Authorization: 'Bearer ' + window.localStorage.getItem('access_token')
-            },
-            params: {
-                server_id: server_id,
-            }
-        })
-        .then( (res) => {
-            tmp_server.settings = res;
+        if (!tmp_server) return;
+
+        ApiRequest("/server-apps", (res) => {
+            tmp_server.settings = res.data;
             setServer(tmp_server);
-        })
-        .catch( (err) => {console.log(err);} );
+        }, { server_id: server_id })
+
     }, [servers, server_id]);
 
     if (server_id)
     return (
         <>
             <Route path="/dashboard/:server_id" exact component={props => <DashbaordHome discordUser={discordUser} server={server}/>}/>
+            <Route path="/dashboard/:server_id/settings" exact component={props => <Settings discordUser={discordUser} server={server}/>}/>
             <ModulesRoutes discordUser={discordUser} server={server}/>
         </>
     );

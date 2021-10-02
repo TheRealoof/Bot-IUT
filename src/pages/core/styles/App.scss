@@ -1,3 +1,5 @@
+@import '../../../Variables.scss';
+
 /* Computers */
 @media only screen and (min-width: 600px) 
 {
@@ -32,6 +34,29 @@
             font-size: 42px;
             margin: 0;
             margin-bottom: 50px;
+        }
+    }
+}
+
+div.app
+{
+    h1
+    {
+        a.button
+        {
+            color: $link-color;
+            float: right;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px;
+            border: solid 2px;
+            border-radius: 10px;
+            transition-duration: 200ms;
+        }
+
+        a.button:hover
+        {
+            color: $link-color-hover;
         }
     }
 }

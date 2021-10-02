@@ -52,7 +52,7 @@ const Dashbaord = () => {
             setLoginState(LOGIN_STATE.AUTHORIZED);
         })
         .catch( (error) => {
-            console.log(error.response.status);
+            console.log(error);
             setLoginState(LOGIN_STATE.UNAUTHORIZED);
         });
 

@@ -43,7 +43,7 @@ const PollsNavLinkPreview = ({poll}) => {
             percentTimeout = setTimeout( () => {
                 for (let i = 0; i < 2; i++)
                 {
-                    percents[i].update(Math.trunc(poll.responses[i].votes*100/totalVotes));
+                    percents[i].update( (totalVotes > 0) ? Math.trunc(poll.responses[i].votes*100/totalVotes) : 0);
                     percents[i].onNewFrame = () => {
                         document.getElementById('poll_preview_percent_text_'+i).innerHTML = Math.trunc(percents[i].value) + '%'
                         document.getElementById('poll_preview_percent_div_'+i).style.width = (percents[i].value) + '%'
