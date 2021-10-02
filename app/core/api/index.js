@@ -4,6 +4,7 @@ const Server = Express();
 module.exports = Server;
 const Port = process.env.PORT;
 const ApiRequest = require('./ApiRequest');
+const guild_db = require('../database/guilds');
 
 Server.listen(Port);
 
@@ -28,14 +29,15 @@ ApiRequest("/servers", async (req, res, user) => {
     res.send(guilds);
 });
 
-ApiRequest("/server-settings", async (req, res, user) => {
+ApiRequest("/server-apps", async (req, res, user) => {
     const guildId = req.query.server_id;
-    const settings = [
-        {
-            appName: "polls",
-            active: true,
-            pollChannel: "0",
-        }
-    ]
-    res.send(settings);
+    const isAdmin = (await require('../bot/functions/GetUserPermissions')(user.id, guildId)).has("ADMINISTRATOR");
+    const guild = await guild_db.get(guildId);
+    let apps = guild.apps;
+    apps.push({
+        name: "settings",
+        enabled: isAdmin,
+    })
+    console.log(apps);
+    res.send(apps);
 });
